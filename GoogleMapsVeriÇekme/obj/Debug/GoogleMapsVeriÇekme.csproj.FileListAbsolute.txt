@@ -68,3 +68,5 @@ C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\Newtonsoft.
 C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\System.Security.AccessControl.xml
 C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\System.Security.Principal.Windows.xml
 C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\System.Text.Encoding.CodePages.xml
+C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\System.IO.Pipelines.dll
+C:\Users\bilal\OneDrive\Masaüstü\C#\GoogleMapsVeriÇekme\bin\Debug\System.IO.Pipelines.xml

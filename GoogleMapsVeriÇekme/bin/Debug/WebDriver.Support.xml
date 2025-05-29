@@ -15,6 +15,7 @@
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver"/> class.
             </summary>
             <param name="parentDriver">The driver to register events for.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="parentDriver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="E:OpenQA.Selenium.Support.Events.EventFiringWebDriver.Navigating">
             <summary>
@@ -845,15 +846,17 @@
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.FindElementEventArgs"/> class.
             </summary>
             <param name="driver">The WebDriver instance used in finding elements.</param>
-            <param name="method">The <see cref="T:OpenQA.Selenium.By"/> object containing the method used to find elements</param>
+            <param name="method">The <see cref="T:OpenQA.Selenium.By"/> object containing the method used to find elements.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="method"/> are <see langword="null"/>.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.Events.FindElementEventArgs.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.IWebElement,OpenQA.Selenium.By)">
             <summary>
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.FindElementEventArgs"/> class.
             </summary>
             <param name="driver">The WebDriver instance used in finding elements.</param>
-            <param name="element">The parent element used as the context for the search.</param>
+            <param name="element">The parent element used as the context for the search, or <see langword="null"/> if none exists.</param>
             <param name="method">The <see cref="T:OpenQA.Selenium.By"/> object containing the method used to find elements.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="method"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.FindElementEventArgs.Driver">
             <summary>
@@ -862,7 +865,7 @@
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.FindElementEventArgs.Element">
             <summary>
-            Gets the parent element used as the context for the search.
+            Gets the parent element used as the context for the search, or <see langword="null"/> if no element is associated.
             </summary>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.FindElementEventArgs.FindMethod">
@@ -881,6 +884,7 @@
             </summary>
             <param name="driver">The WebDriver instance used in the current context.</param>
             <param name="searchContext">The parent searc context used as the context for getting shadow root.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="searchContext"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.GetShadowRootEventArgs.Driver">
             <summary>
@@ -903,6 +907,7 @@
             </summary>
             <param name="driver">The WebDriver instance throwing the exception.</param>
             <param name="thrownException">The exception thrown by the driver.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="thrownException"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebDriverExceptionEventArgs.ThrownException">
             <summary>
@@ -911,7 +916,7 @@
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebDriverExceptionEventArgs.Driver">
             <summary>
-            Gets the WebDriver instance .
+            Gets the WebDriver instance.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs">
@@ -924,17 +929,19 @@
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs"/> class.
             </summary>
             <param name="driver">The WebDriver instance used in navigation.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs.#ctor(OpenQA.Selenium.IWebDriver,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs"/> class.
             </summary>
             <param name="driver">The WebDriver instance used in navigation.</param>
-            <param name="url">The URL navigated to by the driver.</param>
+            <param name="url">The URL navigated to by the driver, or <see langword="null"/> if none exists.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs.Url">
             <summary>
-            Gets the URL navigated to by the driver.
+            Gets the URL navigated to by the driver, or <see langword="null"/> if no URL could be determined.
             </summary>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebDriverNavigationEventArgs.Driver">
@@ -953,6 +960,7 @@
             </summary>
             <param name="driver">The WebDriver instance used to execute the script.</param>
             <param name="script">The script executed by the driver.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="script"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebDriverScriptEventArgs.Driver">
             <summary>
@@ -975,6 +983,7 @@
             </summary>
             <param name="driver">The WebDriver instance used for the action.</param>
             <param name="element">The element used for the action.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="element"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebElementEventArgs.Driver">
             <summary>
@@ -998,10 +1007,11 @@
             <param name="driver">The WebDriver instance used for the action.</param>
             <param name="element">The element used for the action.</param>
             <param name="value">The new value for the element.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> or <paramref name="element"/> are <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.Events.WebElementValueEventArgs.Value">
             <summary>
-            Gets the Value that is written to the element
+            Gets the Value that is written to the element.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.Extensions.WebDriverExtensions">
@@ -1097,22 +1107,19 @@
         </member>
         <member name="T:OpenQA.Selenium.Support.UI.LoadableComponent`1">
             <summary>
-            Represents any abstraction of something that can be loaded. This may be an entire web page, or
-            simply a component within that page (such as a login box or menu) or even a service.
-            </summary>
-            <typeparam name="T">The type to be returned (normally the subclass' type)</typeparam>
-            <example>
-            The expected usage is:
+            <para>Represents any abstraction of something that can be loaded.</para>
+            <para>This may be an entire web page, or simply a component within that page (such as a login box or menu) or even a service.</para>
             <para>
             <code>
-            new HypotheticalComponent().Load();
+            // Example usage:
+            new MyComponent().Load();
             </code>
             </para>
-            </example>
+            </summary>
+            <typeparam name="T">The type to be returned (normally the subclass' type)</typeparam>
             <remarks>
-            After the <see cref="M:OpenQA.Selenium.Support.UI.LoadableComponent`1.Load"/> method is called, the component will be loaded and
-            ready for use. Overload the protected Load and IsLoaded members to both load a component and determine
-            if the component is already loaded.
+            <para>After the <see cref="M:OpenQA.Selenium.Support.UI.LoadableComponent`1.Load"/> method is called, the component will be loaded and ready for use.</para>
+            <para>Overload the protected Load and IsLoaded members to both load a component and determine if the component is already loaded.</para>
             </remarks>
         </member>
         <member name="P:OpenQA.Selenium.Support.UI.LoadableComponent`1.UnableToLoadMessage">
@@ -1194,6 +1201,7 @@
             to manipulate the popup window.</param>
             <remarks>When using this constructor overload, the timeout will be 5 seconds,
             and the check for a new window will be performed every 250 milliseconds.</remarks>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.UI.PopupWindowFinder.#ctor(OpenQA.Selenium.IWebDriver,System.TimeSpan)">
             <summary>
@@ -1206,6 +1214,7 @@
             time to wait for the popup window to appear.</param>
             <remarks>When using this constructor overload, the check for a new window
             will be performed every 250 milliseconds.</remarks>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.UI.PopupWindowFinder.#ctor(OpenQA.Selenium.IWebDriver,System.TimeSpan,System.TimeSpan)">
             <summary>
@@ -1219,6 +1228,7 @@
             time to wait for the popup window to appear.</param>
             <param name="sleepInterval">The <see cref="T:System.TimeSpan"/> representing the
             amount of time to wait between checks of the available window handles.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="driver"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.UI.PopupWindowFinder.Click(OpenQA.Selenium.IWebElement)">
             <summary>
@@ -1291,6 +1301,7 @@
             &lt;option value="foo"&gt;Bar&lt;/option&gt;
             </para>
             </remarks>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="text"/> is <see langword="null"/>.</exception>
             <exception cref="T:OpenQA.Selenium.NoSuchElementException">Thrown if there is no element with the given text present.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Support.UI.SelectElement.SelectByValue(System.String)">
@@ -1358,15 +1369,16 @@
         </member>
         <member name="T:OpenQA.Selenium.Support.UI.SlowLoadableComponent`1">
             <summary>
-            A <see cref="T:OpenQA.Selenium.Support.UI.LoadableComponent`1"/> which might not have finished loading when Load() returns. After a
-            call to Load(), the IsLoaded property should continue to return false until the component has fully
-            loaded. Use the HandleErrors() method to check for error conditions which caused the Load() to fail.
+            <para>A <see cref="T:OpenQA.Selenium.Support.UI.LoadableComponent`1"/> which might not have finished loading when Load() returns.</para>
+            <para>After a call to Load(), the IsLoaded property should continue to return false until the component has fully loaded.</para>
             <para>
-            <pre class="code">
-            new SlowHypotheticalComponent().Load();
-            </pre>
+            <code>
+            // Example usage:
+            new MySlowComponent().Load();
+            </code>
             </para>
             </summary>
+            <remarks>Override the HandleErrors() method to check for error conditions which caused <see cref="M:OpenQA.Selenium.Support.UI.SlowLoadableComponent`1.Load"/> to fail.</remarks>
             <typeparam name="T">The type to be returned (normally the subclass' type)</typeparam>
         </member>
         <member name="M:OpenQA.Selenium.Support.UI.SlowLoadableComponent`1.#ctor(System.TimeSpan)">
@@ -1381,6 +1393,7 @@
             </summary>
             <param name="timeout">The <see cref="T:System.TimeSpan"/> within which the component should be loaded.</param>
             <param name="clock">The <see cref="T:OpenQA.Selenium.Support.UI.IClock"/> to use when measuring the timeout.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="clock"/> is <see langword="null"/>.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Support.UI.SlowLoadableComponent`1.SleepInterval">
             <summary>

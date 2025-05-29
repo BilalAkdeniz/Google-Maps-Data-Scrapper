@@ -197,7 +197,7 @@
              to clone only the node itself.
             </param>
         </member>
-        <member name="T:DocumentFormat.OpenXml.Builder.PackageInitializerDelegate`1">
+        <member name="T:DocumentFormat.OpenXml.Builder.PackageDelegate`1">
             <summary>
             A delegate for initializing a package.
             </summary>
@@ -213,7 +213,7 @@
             Gets a key/value collection that can be used to share data between middleware.
             </summary>
         </member>
-        <member name="M:DocumentFormat.OpenXml.Builder.IPackageBuilder`1.Use(System.Func{DocumentFormat.OpenXml.Builder.PackageInitializerDelegate{`0},DocumentFormat.OpenXml.Builder.PackageInitializerDelegate{`0}})">
+        <member name="M:DocumentFormat.OpenXml.Builder.IPackageBuilder`1.Use(System.Func{DocumentFormat.OpenXml.Builder.PackageDelegate{`0},DocumentFormat.OpenXml.Builder.PackageDelegate{`0}})">
             <summary>
             Add middleware to the package builder.
             </summary>
@@ -266,7 +266,7 @@
             Opens the <paramref name="package"/>.
             </summary>
         </member>
-        <member name="M:DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Use``1(DocumentFormat.OpenXml.Builder.IPackageBuilder{``0},System.Action{``0,DocumentFormat.OpenXml.Builder.PackageInitializerDelegate{``0}})">
+        <member name="M:DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Use``1(DocumentFormat.OpenXml.Builder.IPackageBuilder{``0},System.Action{``0,DocumentFormat.OpenXml.Builder.PackageDelegate{``0}})">
             <summary>
             Adds the <paramref name="middleware"/> to the builder for initializing a package.
             </summary>
@@ -311,11 +311,6 @@
         <member name="T:DocumentFormat.OpenXml.Builder.TemplateBuilderExtensions">
             <summary>
             A collection of extensions to add a template as part of the <see cref="T:DocumentFormat.OpenXml.Builder.IPackageBuilder`1"/>.
-            </summary>
-        </member>
-        <member name="M:DocumentFormat.OpenXml.Builder.TemplateBuilderExtensions.UseTemplate``2(DocumentFormat.OpenXml.Builder.IPackageBuilder{``0},System.String,``1)">
-            <summary>
-            Adds a template to the current <paramref name="builder"/>.
             </summary>
         </member>
         <member name="T:DocumentFormat.OpenXml.ElementEventArgs">
@@ -4715,12 +4710,13 @@
             <param name="openXmlPart">The part this root element to be loaded from.</param>
             <exception cref="T:System.IO.InvalidDataException">Thrown when the part contains an incorrect root element.</exception>
         </member>
-        <member name="M:DocumentFormat.OpenXml.OpenXmlPartRootElement.LoadFromPart(DocumentFormat.OpenXml.Packaging.OpenXmlPart,System.IO.Stream)">
+        <member name="M:DocumentFormat.OpenXml.OpenXmlPartRootElement.LoadFromPart(DocumentFormat.OpenXml.Packaging.OpenXmlPart,System.IO.Stream,System.Boolean)">
             <summary>
             Load the DOM tree from the Open XML part.
             </summary>
             <param name="openXmlPart">The part this root element to be loaded from.</param>
             <param name="partStream">The stream of the part.</param>
+            <param name="strictRelationshipFound">Whether a strict relationship was found.</param>
             <returns>
             Returns true when the part stream is loaded successfully into this root element.
             Returns false when the part stream does not contain any xml element.
@@ -5602,11 +5598,6 @@
         <member name="P:DocumentFormat.OpenXml.ExceptionMessages.NamespaceIdNotAvailable">
             <summary>
               Looks up a localized string similar to Namespace ids are only available for namespaces for Office 2021 and before. Please use prefixes or URLs instead..
-            </summary>
-        </member>
-        <member name="P:DocumentFormat.OpenXml.ExceptionMessages.NoMainPart">
-            <summary>
-              Looks up a localized string similar to The specified package is invalid. The main part is missing..
             </summary>
         </member>
         <member name="P:DocumentFormat.OpenXml.ExceptionMessages.NonCompositeNoChild">

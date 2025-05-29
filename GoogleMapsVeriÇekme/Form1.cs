@@ -16,6 +16,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using WebDriverManager;
 
+
 namespace GoogleMapsVeriÇekme
 {
     public partial class Form1 : Form
@@ -46,10 +47,8 @@ namespace GoogleMapsVeriÇekme
             {
                 List<BusinessInfo> businesses = ScrapeGoogleMaps(keywords);
 
-                // Verileri Excele kaydetme
                 string excelPath = SaveToExcel(businesses);
 
-                // Exceli başlatma
                 System.Diagnostics.Process.Start("explorer.exe", excelPath);
 
                 MessageBox.Show("Veriler başarıyla kaydedildi ve Excel dosyası açıldı!");
@@ -77,15 +76,18 @@ namespace GoogleMapsVeriÇekme
 
             using (IWebDriver driver = new ChromeDriver(options))
             {
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
-                driver.Navigate().GoToUrl("https://www.google.com/maps?hl=en"); 
+                driver.Navigate().GoToUrl("https://www.google.com/maps?hl=en");
+                WaitForPageFullLoad(driver);
                 var searchBox = driver.FindElement(By.Id("searchboxinput"));
                 searchBox.SendKeys(keywords);
                 searchBox.SendKeys(OpenQA.Selenium.Keys.Enter);
 
-                Thread.Sleep(5000); // Sayfa yüklenmeden işleme başlıyorsa burdaki süreyi arttır!!!
+                Thread.Sleep(7000); // geç yüklenme durumunda arttırılabilir!
 
+
+                
                 IWebElement scrollArea = driver.FindElement(By.XPath("//div[@role='feed']"));
                 IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
 
@@ -95,7 +97,7 @@ namespace GoogleMapsVeriÇekme
                 {
                     int previousHeight = Convert.ToInt32(jsExecutor.ExecuteScript("return arguments[0].scrollHeight", scrollArea));
                     jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrollArea);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(5000);
 
                     int newHeight = Convert.ToInt32(jsExecutor.ExecuteScript("return arguments[0].scrollHeight", scrollArea));
                     if (newHeight == previousHeight)
@@ -117,8 +119,11 @@ namespace GoogleMapsVeriÇekme
 
                             
                             string name = "İsim bulunamadı.";
+                            string address = "Adres Bulunamadı";
                             string website = "Website bulunamadı.";
                             string phone = "Telefon bilgisi bulunamadı.";
+                            string rating = "Puanlama bulunamadı";
+                            string review = "Değerlendirme bulunamadı";
 
                             result.Click();
                             Thread.Sleep(3000);
@@ -126,7 +131,14 @@ namespace GoogleMapsVeriÇekme
                             // İsim bilgisi
                             try
                             {
-                                name = driver.FindElement(By.XPath("(//div[@role='main' and @aria-label]//h1)[last()]")).Text;
+                                name = driver.FindElement(By.XPath("(//div[@role='main' and @aria-label]//h1)[last()]")).Text;                                
+                            }
+                            catch (NoSuchElementException) { }
+
+                            //Açık Adres Biligisi
+                            try
+                            {
+                                address = driver.FindElement(By.XPath("//button[contains(@aria-label,'Address:')]//div[@class='AeaXub']")).Text;
                             }
                             catch (NoSuchElementException) { }
 
@@ -143,12 +155,31 @@ namespace GoogleMapsVeriÇekme
                             }
                             catch (NoSuchElementException) { }
 
+
+                            // yıldız bilgisi
+                            try
+                            {
+                                rating = driver.FindElement(By.XPath("//span[contains(@aria-label, 'star')][preceding-sibling::span[1]]")).GetAttribute("aria-label");
+                            }
+                            catch (NoSuchElementException) { }
+
+
+                            // değerlendirme bilgisi
+                            try
+                            {
+                                review = driver.FindElement(By.XPath("//span[contains(@aria-label, 'review') and starts-with(text(), '(')]")).Text;
+                            }
+                            catch (NoSuchElementException) { }
+
                             businessList.Add(new BusinessInfo
                             {
                                 Name = name,
+                                Address = address,
                                 Link = url,
                                 Website = website,
-                                Phone = phone
+                                Phone = phone,
+                                Rating = rating,
+                                Review = review,
                             });
 
                             
@@ -156,7 +187,7 @@ namespace GoogleMapsVeriÇekme
                         }
                         catch
                         {
-                            continue; 
+                             
                         }
                     }
                 }
@@ -164,28 +195,53 @@ namespace GoogleMapsVeriÇekme
             }
         }
 
-
+        private void WaitForPageFullLoad(IWebDriver driver)
+        {
+            var js = (IJavaScriptExecutor)driver;
+            new WebDriverWait(driver, TimeSpan.FromSeconds(30))
+                .Until(d => js.ExecuteScript("return document.readyState").Equals("complete"));
+        }
 
         private string SaveToExcel(List<BusinessInfo> businesses)
         {
-            string fileName = $"Businesses_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+            string fileName = $"Businesses_{DateTime.Now:yyyy-MM-dd}.xlsx";
             string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Businesses");
-                worksheet.Cell(1, 1).Value = "İsim";
-                worksheet.Cell(1, 2).Value = "Link";
-                worksheet.Cell(1, 3).Value = "Web Sitesi";
-                worksheet.Cell(1, 4).Value = "Telefon";
+
+                var headers = new string[] { "İsim", "Açık Adres", "Puanlama", "Değerlendirme", "Telefon", "Web Sitesi", "Link" };
+                for (int col = 0; col < headers.Length; col++)
+                {
+                    var cell = worksheet.Cell(1, col + 1);
+                    cell.Value = headers[col];
+                    cell.Style.Font.Bold = true;
+                    cell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    cell.Style.Fill.BackgroundColor = XLColor.LightGray;
+                }
 
                 for (int i = 0; i < businesses.Count; i++)
                 {
-                    worksheet.Cell(i + 2, 1).Value = businesses[i].Name;
-                    worksheet.Cell(i + 2, 2).Value = businesses[i].Link;
-                    worksheet.Cell(i + 2, 3).Value = businesses[i].Website;
-                    worksheet.Cell(i + 2, 4).Value = businesses[i].Phone;
+                    var row = i + 2;
+                    worksheet.Cell(row, 1).Value = businesses[i].Name;
+                    worksheet.Cell(row, 2).Value = businesses[i].Address;
+                    worksheet.Cell(row, 3).Value = businesses[i].Rating;
+                    worksheet.Cell(row, 4).Value = businesses[i].Review;
+                    worksheet.Cell(row, 5).Value = businesses[i].Phone;
+                    worksheet.Cell(row, 6).Value = businesses[i].Website;
+                    worksheet.Cell(row, 7).Value = businesses[i].Link;
+
+                    if (i % 2 == 1)
+                    {
+                        worksheet.Row(row).Style.Fill.BackgroundColor = XLColor.LightCyan;
+                    }
                 }
+
+                worksheet.Columns().AdjustToContents();
+                worksheet.RangeUsed().Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                worksheet.RangeUsed().Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
                 workbook.SaveAs(filePath);
             }
             return filePath;
@@ -194,9 +250,12 @@ namespace GoogleMapsVeriÇekme
         private class BusinessInfo
         {
             public string Name { get; set; }
+            public string Address { get; set; }
             public string Link { get; set; }
             public string Website { get; set; }
             public string Phone { get; set; }
+            public string Rating { get; set; }
+            public string Review { get; set; }
         }
 
         bool isWhite = true;

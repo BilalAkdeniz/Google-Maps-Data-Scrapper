@@ -25200,6 +25200,42 @@
             xmlns:r=http://schemas.openxmlformats.org/officeDocument/2006/relationships
             </remarks>
         </member>
+        <member name="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo">
+            <summary>
+            <para>Defines the PivotCacheRichInfo Class.</para>
+            <para>This class is available in Microsoft365 and above.</para>
+            <para>When the object is serialized out as xml, it's qualified name is xprd:richInfo.</para>
+            </summary>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo.#ctor">
+            <summary>
+            Initializes a new instance of the PivotCacheRichInfo class.
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo.PivotCacheGuid">
+            <summary>
+            <para>pivotCacheGuid, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: pivotCacheGuid</para>
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo.PivotIgnoreInvalidCache">
+            <summary>
+            <para>pivotIgnoreInvalidCache, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: pivotIgnoreInvalidCache</para>
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo.Id">
+            <summary>
+            <para>id, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: r:id</para>
+            </summary>
+            <remarks>
+            xmlns:r=http://schemas.openxmlformats.org/officeDocument/2006/relationships
+            </remarks>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo.CloneNode(System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotVersionInfo.CacheVersionInfo">
             <summary>
             <para>Defines the CacheVersionInfo Class.</para>
@@ -25722,6 +25758,24 @@
             <para>When the item is serialized out as xml, its value is "median".</para>
             </summary>
         </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.Pivot2023Calculation.AggregationType.DistinctDuplicates">
+            <summary>
+            distinctDuplicates.
+            <para>When the item is serialized out as xml, its value is "distinctDuplicates".</para>
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.Pivot2023Calculation.AggregationType.CountValuesDuplicated">
+            <summary>
+            countValuesDuplicated.
+            <para>When the item is serialized out as xml, its value is "countValuesDuplicated".</para>
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.Pivot2023Calculation.AggregationType.CountRepeatValues">
+            <summary>
+            countRepeatValues.
+            <para>When the item is serialized out as xml, its value is "countRepeatValues".</para>
+            </summary>
+        </member>
         <member name="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotAutoRefresh.Xsdboolean">
             <summary>
             <para>Defines the Xsdboolean Class.</para>
@@ -25741,6 +25795,54 @@
             <param name="text">Specifies the text content of the element.</param>
         </member>
         <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotAutoRefresh.Xsdboolean.CloneNode(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotDynamicArrays.PivotCacheDynamicArray">
+            <summary>
+            <para>Defines the PivotCacheDynamicArray Class.</para>
+            <para>This class is available in Microsoft365 and above.</para>
+            <para>When the object is serialized out as xml, it's qualified name is xlpda:pivotCacheDynamicArray.</para>
+            </summary>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotDynamicArrays.PivotCacheDynamicArray.#ctor">
+            <summary>
+            Initializes a new instance of the PivotCacheDynamicArray class.
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotDynamicArrays.PivotCacheDynamicArray.Ref">
+            <summary>
+            <para>ref, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: ref</para>
+            </summary>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotDynamicArrays.PivotCacheDynamicArray.CloneNode(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version">
+            <summary>
+            <para>Defines the Version Class.</para>
+            <para>This class is available in Microsoft365 and above.</para>
+            <para>When the object is serialized out as xml, it's qualified name is xlwcv:version.</para>
+            </summary>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version.#ctor">
+            <summary>
+            Initializes a new instance of the Version class.
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version.WarnBelowVersion">
+            <summary>
+            <para>warnBelowVersion, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: warnBelowVersion</para>
+            </summary>
+        </member>
+        <member name="P:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version.SetVersion">
+            <summary>
+            <para>setVersion, this property is only available in Microsoft365 and later.</para>
+            <para>Represents the following attribute in the schema: setVersion</para>
+            </summary>
+        </member>
+        <member name="M:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version.CloneNode(System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:DocumentFormat.OpenXml.Office.Y2022.FeaturePropertyBag.FeaturePropertyBags">
@@ -57815,7 +57917,10 @@
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2013.Excel.PivotCacheDecoupled" /> <c>&lt;x15:pivotCacheDecoupled></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2013.Excel.PivotCacheIdVersion" /> <c>&lt;x15:pivotCacheIdVersion></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2013.Excel.TimelinePivotCacheDefinition" /> <c>&lt;x15:timelinePivotCacheDefinition></c></description></item>
+              <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotDynamicArrays.PivotCacheDynamicArray" /> <c>&lt;xlpda:pivotCacheDynamicArray></c></description></item>
+              <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotRichData.PivotCacheRichInfo" /> <c>&lt;xprd:richInfo></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2021.Excel.Pivot.Xsdboolean" /> <c>&lt;xxpim:implicitMeasureSupport></c></description></item>
+              <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.PivotAutoRefresh.Xsdboolean" /> <c>&lt;xlpar:autoRefresh></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2022.PivotVersionInfo.CacheVersionInfo" /> <c>&lt;xxpvi:cacheVersionInfo></c></description></item>
             </list>
             </remarks>
@@ -59074,6 +59179,7 @@
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2013.Excel.TimelineCacheReferences" /> <c>&lt;x15:timelineCacheRefs></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office2013.Excel.WorkbookProperties" /> <c>&lt;x15:workbookPr></c></description></item>
               <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2023.ExternalCodeService.ExternalCodeService" /> <c>&lt;xlecs:externalCodeService></c></description></item>
+              <item><description><see cref="T:DocumentFormat.OpenXml.Office.SpreadSheetML.Y2024.WorkbookCompatibilityVersion.Version" /> <c>&lt;xlwcv:version></c></description></item>
             </list>
             </remarks>
         </member>

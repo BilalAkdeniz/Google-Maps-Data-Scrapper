@@ -600,6 +600,16 @@
             Semantic style of reference.
             </summary>
         </member>
+        <member name="P:ClosedXML.Parser.ReferenceArea.IsRowSpan">
+            <summary>
+            Is area a row span (e.g. <c>$5:7</c> in A1 or <c>R[7]</c>, <c>R7:R[9]</c>)?
+            </summary>
+        </member>
+        <member name="P:ClosedXML.Parser.ReferenceArea.IsColSpan">
+            <summary>
+            Is area a col span (e.g. <c>$C:Z</c> in A1 or <c>C[7]</c>, <c>C7:C[9]</c>)?
+            </summary>
+        </member>
         <member name="M:ClosedXML.Parser.ReferenceArea.#ctor(ClosedXML.Parser.RowCol,ClosedXML.Parser.RowCol)">
             <summary>
             Create a reference symbol using the two <see cref="T:ClosedXML.Parser.RowCol"/> (e.g.
